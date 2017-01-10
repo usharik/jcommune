@@ -32,7 +32,7 @@ $(function () {
     $("[id^=newGroup]").on('click', showGroupManagementDialog);
     $("[id^=editGroup]").on('click', showGroupManagementDialog);
     $("[id^=deleteGroup]").on('click', showDeleteGroupDialog);
-    $("[name=group-row]").hover(
+    $("[name=group-row],[name=user-row]").hover(
         function () {
             $(this).find('.management-block').show()},
         function () {

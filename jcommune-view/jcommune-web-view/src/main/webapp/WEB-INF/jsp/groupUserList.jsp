@@ -22,40 +22,39 @@
 <head>
     <title>
         <c:out value="${cmpTitlePrefix}"/>
-        <spring:message code="label.administration.userGroups"/>
+        <c:out value="${group.name}"/>
     </title>
 </head>
 <body>
-
 <div class="container">
     <div class="inline-block">
-        <h2><spring:message code="label.administration.userGroups"/></h2>
-    </div>
-    <div class="inline-block pull-right">
-        <input id="newGroup" type="submit" class="btn btn-primary" value="<spring:message code="label.group.creation"/>"/>
+        <h2>
+            <spring:message code="label.administration.groupUserList"/>&nbsp;
+            <c:out value="${group.name}"/>
+        </h2>
     </div>
     <table class="table table-bordered grid-table display" id="userGroups">
         <thead>
         <tr>
-            <th><spring:message code="label.group.name"/></th>
-            <th><spring:message code="label.group.numberOfMembers"/></th>
+            <th><spring:message code="label.group.user.name"/></th>
+            <th><spring:message code="label.group.user.email"/></th>
         </tr>
         </thead>
-        <c:forEach var="group" items="${groups}">
-          <tr id='${group.id}' name='group-row' class="grid-row group-edit-row">
-            <td id="group-name">
-                <a href="${pageContext.request.contextPath}/group/${group.id}"><c:out value="${group.name}"/></a>
-            </td>
-            <td><c:out value="${group.numberOfUsers}"/>
-              <c:if test="${group.editable}">
-                <div class="inline-block pull-right management-block">
-                  <span id='editGroup' class="icon-pencil management-element"></span>
-                  <span id='deleteGroup' class="icon-trash management-element"></span>
-                </div>
-              </c:if>
-            </td>
-              <input id="group-description" type="hidden" value="<c:out value="${group.description}"/>"/>
-          </tr>
+        <c:forEach var="user" items="${group.users}">
+            <tr id='${user.id}' name='user-row' class="grid-row user-row-class">
+                <td id="user-name">
+                    <c:out value="${user.username}"/>
+                </td>
+                <td>
+                    <c:out value="${user.email}"/>
+                    <div class="inline-block pull-right management-block">
+                        <span id='editUser' class="icon-pencil management-element"></span>
+                    </div>
+                    <div class="inline-block pull-right management-block">
+                        <span id='removeUser' class="icon-remove management-element"></span>
+                    </div>
+                </td>
+            </tr>
         </c:forEach>
     </table>
 </div>
